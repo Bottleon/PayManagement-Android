@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/whitebox"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/back_icon"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"/>
+
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/leferibasebold"
+                android:text="근태 관리"
+                android:textColor="#000000"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_height="3dp"
+                android:layout_marginTop="20dp"
+                android:background="#EE8282" />
+        </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_height="110dp"
+                android:background="@drawable/shadow"
+                android:layout_width="350dp"
+                android:layout_gravity="center_horizontal"
+                android:text="출 근"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/leferibaseregular"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@drawable/green_check_icon"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_height="110dp"
+                android:background="@drawable/shadow"
+                android:layout_width="350dp"
+                android:layout_gravity="center_horizontal"
+                android:text="퇴 근"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/leferibaseregular"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@drawable/red_check_icon"
+                />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+        <ImageButton
+            android:id="@+id/bell_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bell_icon"
+            android:contentDescription="bell" />
+
+        <ImageButton
+            android:id="@+id/home_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_icon"
+            android:contentDescription="home" />
+
+        <ImageButton
+            android:id="@+id/mypage_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_icon"
+            android:contentDescription="menu" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

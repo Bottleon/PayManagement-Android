@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/whitebox"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/back_icon"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"/>
+
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/leferibasebold"
+                android:text="@string/title_marketname"
+                android:textColor="#000000"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="3dp"
+            android:layout_marginTop="20dp"
+            android:background="#EE8282" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/store"
+                    android:layout_marginStart="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/market_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="가게 이름"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:id="@+id/market_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0537891234"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferipointwhite"
+                    android:layout_marginStart="20dp"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:id="@+id/owner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="고용주 이름"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginStart="20dp"
+                    android:gravity="right"/>
+
+                <TextView
+                    android:id="@+id/owner_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="01012345678"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferipointwhite"
+                    android:layout_marginStart="20dp"
+                    android:gravity="right"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_height="22dp"
+                    android:background="@drawable/cancel_box"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="가게 정보"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferipointwhite"
+                    android:layout_marginRight="5dp"
+                   />
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_height="110dp"
+                android:background="@drawable/shadow"
+                android:layout_width="350dp"
+                android:layout_gravity="center_horizontal"
+                android:text="근태 관리"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/leferibaseregular"
+                android:layout_marginTop="30dp"
+                android:drawableBottom="@drawable/qrcheck_icon"
+               />
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="110dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="채 팅"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/chatting_icon"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="임 금\n달 력"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/calendar_icon"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="주 간\n스 케 줄"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/schedule_icon"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="공 지\n사 항"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/warning_icon"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="체 크\n리 스 트"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/checklist_icon"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shadow"
+                    android:layout_width="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="직 원\n목 록"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/leferibaseregular"
+                    android:layout_marginTop="30dp"
+                    android:drawableBottom="@drawable/staff_icon"
+                    />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+        <ImageButton
+            android:id="@+id/bell_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bell_icon"
+            android:contentDescription="bell" />
+
+        <ImageButton
+            android:id="@+id/home_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_icon"
+            android:contentDescription="home" />
+
+        <ImageButton
+            android:id="@+id/mypage_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_icon"
+            android:contentDescription="menu" />
+
+    </LinearLayout>
+
+</LinearLayout>
