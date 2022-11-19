@@ -39,113 +39,117 @@
         android:layout_weight="1">
 
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_gravity="center_vertical">
-        <EditText
-            android:id="@+id/id_input"
-            android:inputType="text"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="@string/hintID"
-            android:textColorHint="@color/gray"
-            android:background="@drawable/memo_border"
-            android:textColor="@color/black"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
 
-           <EditText
-               android:id="@+id/pw_input"
-               android:layout_width="300dp"
-               android:layout_height="50dp"
-               android:layout_marginTop="10dp"
-               android:layout_gravity="center_horizontal"
-               android:background="@drawable/memo_border"
-               android:hint="@string/hintPW"
-               android:importantForAutofill="no"
-               android:inputType="text"
-               android:textColorHint="@color/gray"
-               android:textColor="@color/black"/>
+            <EditText
+                android:id="@+id/id_input"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/memo_border"
+                android:hint="@string/hintID"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
-           <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_button"
-            android:layout_width="310dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/login_box"
-            android:text="@string/login"
-            android:textStyle="bold"
-            android:textSize="20sp" android:textColor="@color/white"
-            android:fontFamily="@font/leferipointwhite"/>
+            <EditText
+                android:id="@+id/pw_input"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/memo_border"
+                android:hint="@string/hintPW"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_button"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_box"
+                android:fontFamily="@font/leferipointwhite"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-               android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-               <TextView
-                   android:id="@+id/signin_text_button"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="회원가입"
-                   android:textSize="20dp"
-                   android:textColor="@color/black"
-                   android:textAlignment="center"
-                   android:fontFamily="@font/leferipointwhite"/>
-               <TextView
-                   android:id="@+id/findpw_text_button"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="비밀번호 찾기"
-                   android:textSize="20dp"
-                   android:textColor="@color/black"
-                   android:textAlignment="center"
-                   android:fontFamily="@font/leferipointwhite"/>
-           </LinearLayout>
-       </LinearLayout>
+                <TextView
+                    android:id="@+id/signin_text_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/leferipointwhite"
+                    android:text="회원가입"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/findpw_text_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/leferipointwhite"
+                    android:text="비밀번호 찾기"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginBottom="30dp">
-    <ImageButton
-        android:id="@+id/bell_imagebutton"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:src="@drawable/bell_icon"
-        android:contentDescription="bell" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        >
+        <ImageButton
+            android:id="@+id/bell_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bell_icon"
+            android:contentDescription="bell" />
 
-    <ImageButton
-        android:id="@+id/home_imagebutton"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:src="@drawable/home_icon"
-        android:contentDescription="home" />
+        <ImageButton
+            android:id="@+id/home_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_icon"
+            android:contentDescription="home" />
 
-    <ImageButton
-        android:id="@+id/mypage_imagebutton"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:src="@drawable/menu_icon"
-        android:contentDescription="menu" />
+        <ImageButton
+            android:id="@+id/mypage_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_icon"
+            android:contentDescription="menu" />
 
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout>
 
