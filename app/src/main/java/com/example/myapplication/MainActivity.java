@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.common.exception.APIError;
@@ -36,29 +37,57 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private final String TAG = this.getClass().getSimpleName();
     AppCompatButton loginButton;
     EditText idText;
     EditText pwText;
+    TextView signupButton;
+    TextView findPwButton;
+    UserApi userApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initialization();
+        initializationComponents();
+        initializationFunctions();
     }
-
-    private void initialization(){
+    private void initializationComponents(){
         loginButton = findViewById(R.id.login_button);
         idText = findViewById(R.id.id_input);
         pwText = findViewById(R.id.pw_input);
-        UserApi userApi = RetrofitClient.getInstance().create(UserApi.class);
+        signupButton = findViewById(R.id.signin_text_button);
+        findPwButton = findViewById(R.id.findpw_text_button);
+    }
+    private void initializationFunctions(){
+        userApi = RetrofitClient.getInstance().create(UserApi.class);
+        clickLoginFunction();
+        clickSignupFunction();
+        clickFindPwFunction();
+    }
+    private void clickFindPwFunction(){
+        findPwButton.setOnClickListener(view->{
+            Intent intent = new Intent(MainActivity.this,FindpwActivity.class);
+            startActivity(intent);
+        });
+    }
+    private void clickSignupFunction(){
+        signupButton.setOnClickListener(view->{
+            Intent intent = new Intent(MainActivity.this,SignupActivity.class);
+            startActivity(intent);
+        });
+    }
+    private void clickLoginFunction(){
         loginButton.setOnClickListener(view -> {
             String id = idText.getText().toString();
             String pw = pwText.getText().toString();
-//            if(pw.length()<8||pw.length()>16){
-//                showMessage("비밀번호를 8~16자 사이로 입력해주세요");
-//                return;
-//            }
+            if(id==""){
+                showMessage("아이디를 입력해주세요");
+                return;
+            }
+            if(pw.length()<8||pw.length()>16){
+                showMessage("비밀번호를 8~16자 사이로 입력해주세요");
+                return;
+            }
             User user = new User();
             user.setId(id);
             user.setPassword(pw);
@@ -90,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             });
         });
     }
-    public void showMessage(String msg){
+    private void showMessage(String msg){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setIcon(R.mipmap.ic_launcher);//알림창 아이콘 설정
         dialog.setTitle("알림창");
