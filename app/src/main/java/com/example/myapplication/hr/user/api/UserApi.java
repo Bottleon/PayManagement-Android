@@ -14,7 +14,7 @@ public interface UserApi {
     @GET("user/all")
     Call<User> getAllUsers();
     @POST("user/save")
-    Call<User> createUser(@Body User user);
+    Call<User> saveUser(@Body User user);
     @POST("user/login")
     Call<User> login(@Body User user);
 }
