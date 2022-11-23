@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".CategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -137,7 +139,8 @@
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
+                android:id="@+id/qrcheck_button"
                 android:layout_height="110dp"
                 android:background="@drawable/shadow"
                 android:layout_width="350dp"
@@ -157,7 +160,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/chatting_button"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"
                     android:layout_width="110dp"
@@ -170,7 +174,8 @@
                     android:drawableBottom="@drawable/chatting_icon"
                     />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/calendar_button"
                     android:layout_marginLeft="10dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"
@@ -184,7 +189,8 @@
                     android:drawableBottom="@drawable/calendar_icon"
                     />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/schedule_button"
                     android:layout_marginLeft="10dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"
@@ -207,7 +213,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/notice_button"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"
                     android:layout_width="110dp"
@@ -220,7 +227,8 @@
                     android:drawableBottom="@drawable/warning_icon"
                     />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/checklist_button"
                     android:layout_marginLeft="10dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"
@@ -234,7 +242,8 @@
                     android:drawableBottom="@drawable/checklist_icon"
                     />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
+                    android:id="@+id/stafflist_button"
                     android:layout_marginLeft="10dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shadow"

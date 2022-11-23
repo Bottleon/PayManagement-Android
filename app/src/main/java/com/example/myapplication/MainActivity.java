@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if(response.isSuccessful()){
-                        Intent intent = new Intent(MainActivity.this,MarketListActivity.class);
+                        Intent intent = new Intent(MainActivity.this,MarketlistActivity.class);
                         startActivity(intent);
                     }else{
                         if (response.errorBody() != null) {
