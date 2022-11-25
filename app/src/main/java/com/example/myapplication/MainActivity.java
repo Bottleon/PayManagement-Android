@@ -80,8 +80,11 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(view -> {
             String id = idText.getText().toString();
             String pw = pwText.getText().toString();
-            if(id==""){
+            if(id.isEmpty()){
                 showMessage("아이디를 입력해주세요");
+                return;
+            }else if(pw.isEmpty()){
+                showMessage("비밀번호를 입력해주세요");
                 return;
             }
             if(pw.length()<8||pw.length()>16){
