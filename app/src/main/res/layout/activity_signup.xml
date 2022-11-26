@@ -239,6 +239,7 @@
 
                 <EditText
                     android:id="@+id/user_password"
+                    android:inputType="textPassword"
                     android:layout_width="230dp"
                     android:layout_marginStart="10dp"
                     android:layout_height="wrap_content"
@@ -290,11 +291,12 @@
                     />
                 <RadioGroup
                     android:id="@+id/gender_radioGroup"
-                    android:checkedButton="@+id/employee_radiobutton"
+                    android:checkedButton="@+id/male_radiobutton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginStart="10dp"
+                    >
                     <RadioButton
                         android:id="@+id/male_radiobutton"
                         android:layout_width="0dp"
@@ -316,7 +318,7 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -338,7 +340,7 @@
                     android:layout_marginStart="10dp"
                     />
 
-            </LinearLayout>
+            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
