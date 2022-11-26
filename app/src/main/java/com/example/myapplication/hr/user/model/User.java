@@ -33,8 +33,6 @@ public class User {
     @Expose
     private String profileName;
 
-    @SerializedName("stores")
-    @Expose
     private List<UserStore> stores = new ArrayList<>();
     public String getId() {
         return id;

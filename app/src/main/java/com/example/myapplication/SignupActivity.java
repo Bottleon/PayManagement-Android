@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,10 +47,18 @@ public class SignupActivity extends AppCompatActivity {
     AppCompatButton cancelButton;
     AppCompatButton certificationbutton;
     AppCompatButton varificationButton;
-    Boolean isVarficationId = false;
+    boolean isVarificationId = false;
     UserApi userApi;
     MessageApi messageApi;
     Retrofit retrofit;
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[A-Za-z])" +     // at least 1 special character
+                    "(?=.*\\d)"+
+                    "(?=.*[~@$!%*#?&])"+
+                    "[A-Za-z\\d~@$!%*#?&]{8,16}" +
+                    "$");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +106,13 @@ public class SignupActivity extends AppCompatActivity {
                         showMessage("메세지가 전송되었습니다.");
                     }else{
                         if (response.errorBody() != null) {
-                            showMessage("메세지 전송에 실패했습니다.");
+                            try {
+                                Gson gson = new Gson();
+                                APIError error = gson.fromJson(response.errorBody().string(),APIError.class);
+                                showMessage(error.message());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -128,7 +143,7 @@ public class SignupActivity extends AppCompatActivity {
                 public void onResponse(Call<CertificationNumber> call, Response<CertificationNumber> response) {
                     if(response.isSuccessful()){
                         showMessage("인증되었습니다.");
-                        isVarficationId=true;
+                        isVarificationId=true;
                     }else{
                         if (response.errorBody() != null) {
                             try {
@@ -151,7 +166,7 @@ public class SignupActivity extends AppCompatActivity {
         });
         //회원가입하기 버튼
         signUpButton.setOnClickListener(view->{
-            if(isVarficationId){
+            if(!isVarificationId){
                 showMessage("휴대폰 인증을 해주세요.");
                 return;
             }
@@ -162,11 +177,17 @@ public class SignupActivity extends AppCompatActivity {
             RadioButton checkedGenderRadio = findViewById(genderRadioGroup.getCheckedRadioButtonId());
             String authType = checkedAuthRadio.getText().toString();
             String gender = checkedGenderRadio.getText().toString();
-            if(authType.isEmpty()){
+            if(id.isEmpty()){
+                showMessage("아이디를 입력해주세요");
+                return;
+            }else if(authType.isEmpty()){
                 showMessage("근로자 혹은 고용주를 선택해주세요");
                 return;
             }else if(password.isEmpty()){
                 showMessage("비밀번호를 입력해주세요");
+                return;
+            }else if(!PASSWORD_PATTERN.matcher(password).matches()){
+                showMessage("비밀번호는 영문,숫자,특수문자1개 이상 8~16자 사이로 입력해주세요\n사용가능한 특수문자 : ~@$!%*#?&");
                 return;
             }
             User user = new User();
@@ -186,7 +207,12 @@ public class SignupActivity extends AppCompatActivity {
                             try {
                                 Gson gson = new Gson();
                                 APIError error = gson.fromJson(response.errorBody().string(),APIError.class);
-                                showMessage(error.message());
+                                if(error.defaultMessage()!=null&&!error.defaultMessage().isEmpty()){
+                                    showMessage(error.defaultMessage());
+                                }else{
+                                    showMessage(error.message());
+                                }
+                                return;
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -224,5 +250,4 @@ public class SignupActivity extends AppCompatActivity {
         });
         dialog.show();
     }
-
 }
