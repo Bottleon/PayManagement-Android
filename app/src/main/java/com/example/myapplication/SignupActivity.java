@@ -8,8 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -19,9 +17,9 @@ import android.widget.Toast;
 import com.example.myapplication.common.exception.APIError;
 import com.example.myapplication.common.retrofit.RetrofitClient;
 import com.example.myapplication.hr.message.api.MessageApi;
-import com.example.myapplication.hr.message.model.CertificationNumber;
 import com.example.myapplication.hr.user.api.UserApi;
 import com.example.myapplication.hr.user.model.User;
+import com.example.myapplication.hr.message.model.UserMessage;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -54,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
-                    "(?=.*[A-Za-z])" +     // at least 1 special character
+                    "(?=.*[A-Za-z])" +
                     "(?=.*\\d)"+
                     "(?=.*[~@$!%*#?&])"+
                     "[A-Za-z\\d~@$!%*#?&]{8,16}" +
@@ -99,9 +97,9 @@ public class SignupActivity extends AppCompatActivity {
                 showMessage("휴대폰 번호를 입력해주세요.");
                 return;
             }
-            messageApi.getCertificationNumber(id).enqueue(new Callback<CertificationNumber>() {
+            messageApi.getCertificationNumber(id).enqueue(new Callback<UserMessage>() {
                 @Override
-                public void onResponse(Call<CertificationNumber> call, Response<CertificationNumber> response) {
+                public void onResponse(Call<UserMessage> call, Response<UserMessage> response) {
                     if(response.isSuccessful()){
                         showMessage("메세지가 전송되었습니다.");
                     }else{
@@ -118,7 +116,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<CertificationNumber> call, Throwable t) {
+                public void onFailure(Call<UserMessage> call, Throwable t) {
                     showMessage("메세지 전송에 실패했습니다.");
                 }
             });
@@ -135,12 +133,13 @@ public class SignupActivity extends AppCompatActivity {
                 showMessage("인증번호를 입력해주세요");
                 return;
             }
-            CertificationNumber certificationNumber1 = new CertificationNumber();
-            certificationNumber1.setId(id);
-            certificationNumber1.setCertificationNumber(certificationNumber);
-            messageApi.varifyNumber(certificationNumber1).enqueue(new Callback<CertificationNumber>() {
+            UserMessage userMessage = new UserMessage();
+            userMessage.setMessageNumber(certificationNumber);
+            userMessage.setId(id);
+
+            messageApi.varifyNumber(userMessage).enqueue(new Callback<UserMessage>() {
                 @Override
-                public void onResponse(Call<CertificationNumber> call, Response<CertificationNumber> response) {
+                public void onResponse(Call<UserMessage> call, Response<UserMessage> response) {
                     if(response.isSuccessful()){
                         showMessage("인증되었습니다.");
                         isVarificationId=true;
@@ -158,7 +157,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<CertificationNumber> call, Throwable t) {
+                public void onFailure(Call<UserMessage> call, Throwable t) {
                     showMessage("인증에 실패했습니다.");
                     Logger.getLogger(SignupActivity.class.getName()).log(Level.SEVERE,t.getMessage());
                 }

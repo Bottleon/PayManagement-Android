@@ -6,12 +6,13 @@ import com.google.gson.annotations.SerializedName;
 
 import org.intellij.lang.annotations.Pattern;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class User {
+public class User implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;
