@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.myapplication.common.exception.APIError;
 import com.example.myapplication.common.exception.ErrorUtils;
 import com.example.myapplication.common.retrofit.RetrofitClient;
+import com.example.myapplication.common.token.TokenInfo;
+import com.example.myapplication.common.token.TokenUtil;
 import com.example.myapplication.hr.user.model.User;
 import com.example.myapplication.hr.user.api.UserApi;
 import com.google.gson.Gson;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         pwText = findViewById(R.id.pw_input);
         signupButton = findViewById(R.id.signin_text_button);
         findPwButton = findViewById(R.id.findpw_text_button);
+        TokenUtil.init(getApplicationContext());
     }
     private void initializationFunctions(){
         userApi = RetrofitClient.getInstance().create(UserApi.class);
@@ -95,11 +98,16 @@ public class MainActivity extends AppCompatActivity {
             user.setId(id);
             user.setPassword(pw);
 
-            userApi.login(user).enqueue(new Callback<User>() {
+            userApi.login(user).enqueue(new Callback<TokenInfo>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
+                public void onResponse(Call<TokenInfo> call, Response<TokenInfo> response) {
                     if(response.isSuccessful()){
+                        TokenUtil.setAccessToken(response.body().getAccessToken());
+                        TokenUtil.setRefreshToken(response.body().getRefreshToken());
+                        System.out.println(TokenUtil.getAccessToken("atc"));
+                        System.out.println(TokenUtil.getRefreshToken("rtc"));
                         Intent intent = new Intent(MainActivity.this,MarketlistActivity.class);
+                        intent.putExtra("user", user);
                         startActivity(intent);
                     }else{
                         if (response.errorBody() != null) {
@@ -114,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(Call<TokenInfo> call, Throwable t) {
 
                     Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE,t.getMessage());
