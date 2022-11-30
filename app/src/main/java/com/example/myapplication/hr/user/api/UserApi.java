@@ -1,7 +1,6 @@
 package com.example.myapplication.hr.user.api;
 
 import com.example.myapplication.common.token.TokenInfo;
-import com.example.myapplication.hr.store.model.ResponseStoreList;
 import com.example.myapplication.hr.store.model.Store;
 import com.example.myapplication.hr.user.model.User;
 
@@ -21,7 +20,7 @@ public interface UserApi {
     @GET("user/all")
     Call<User> getAllUsers();
     @GET("user/stores")
-    Call<ResponseStoreList> getStoresByUser(@Header ("authorization") String accessToken, @Query("userId") String id);
+    Call<List<Store>> getStoresByUser(@Header ("authorization") String accessToken, @Query("userId") String id);
     @POST("user/save")
     Call<User> saveUser(@Body User user);
     @POST("user/login")
