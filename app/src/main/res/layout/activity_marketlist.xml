@@ -55,7 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,43 +62,11 @@
             android:orientation="vertical"
             android:elevation="10dp">
 
-
-            <Button
-                android:id="@+id/market1_button"
-                android:layout_height="100dp"
-                android:layout_width="350dp"
-                android:background="@drawable/shadow"
-                android:text="가게 이름"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/leferibasebold"
-                android:layout_marginTop="30dp"
-                android:layout_gravity="center_horizontal"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 />
-
-            <Button
-                android:id="@+id/market2"
-                android:layout_height="100dp"
-                android:layout_width="350dp"
-                android:background="@drawable/shadow"
-                android:text="가게 이름"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/leferibasebold"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"/>
-
-            <Button
-                android:id="@+id/market3"
-                android:layout_height="100dp"
-                android:layout_width="350dp"
-                android:background="@drawable/shadow"
-                android:text="가게 이름"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/leferibasebold"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"/>
 
 
         </LinearLayout>
