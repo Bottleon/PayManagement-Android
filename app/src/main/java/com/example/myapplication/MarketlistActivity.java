@@ -14,17 +14,16 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.myapplication.common.exception.APIError;
-import com.example.myapplication.common.recycleview.Adapter;
+import com.example.myapplication.common.recycleview.StoreAdapter;
 import com.example.myapplication.common.retrofit.RetrofitClient;
 import com.example.myapplication.common.token.TokenUtil;
 import com.example.myapplication.hr.store.model.Store;
 import com.example.myapplication.hr.user.api.UserApi;
 import com.example.myapplication.hr.user.model.User;
-import com.example.myapplication.hr.userstore.model.UserStore;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -38,13 +37,14 @@ import retrofit2.Retrofit;
 
 public class MarketlistActivity extends AppCompatActivity {
 
-    ImageButton back_button;
-    Retrofit retrofit;
-    UserApi userApi;
-    User user;
-    List<Store> stores;
-    RecyclerView recyclerView;
-    Adapter adapter;
+    private ImageButton back_button;
+    private Retrofit retrofit;
+    private UserApi userApi;
+    private User user;
+    private List<Store> stores;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private StoreAdapter storeAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,21 +59,23 @@ public class MarketlistActivity extends AppCompatActivity {
         back_button = findViewById(R.id.back_button);
         retrofit = RetrofitClient.getInstance();
         userApi = retrofit.create(UserApi.class);
-        recyclerView = findViewById(R.id.recycle_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
-        adapter = new Adapter();
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        stores = new ArrayList<>();
+        storeAdapter = new StoreAdapter((ArrayList<Store>) stores);
+        recyclerView.setAdapter(storeAdapter);
     }
     private void initailizationEvent(){
-        /*userApi.getStoresByUser(TokenUtil.getAccessToken("act"),user.getId()).enqueue(new Callback<List<Store>>() {
+        userApi.getStoresByUser(TokenUtil.getAccessToken("Authorization"),user.getId()).enqueue(new Callback<List<Store>>() {
             @Override
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
                 if(response.isSuccessful()){
-                    stores = response.body();
-                    for(Store s : stores){
-                        String title = s.getName();
-                        adapter.setArrayList(title);
+                    for(Store s : response.body()){
+                        stores.add(s);
+                        storeAdapter.notifyDataSetChanged();
                     }
-                    recyclerView.setAdapter(adapter);
+
                 }else{
                     if (response.errorBody() != null) {
                         try {
@@ -92,7 +94,7 @@ public class MarketlistActivity extends AppCompatActivity {
                 Toast.makeText(MarketlistActivity.this,"Failed get Store",Toast.LENGTH_SHORT).show();
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE,t.getMessage());
             }
-        });*/
+        });
         /*market1_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

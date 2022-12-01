@@ -29,7 +29,7 @@ public class TokenUtil {
     }
 
     public static String getAccessToken(String defValue) {
-        return prefs.getString(Access_Token,defValue);
+        return "Bearer "+prefs.getString(Access_Token,defValue);
     }
 
     public static void setRefreshToken(String value) {
