@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         TokenUtil.setAccessToken(response.body().getAccessToken());
                         TokenUtil.setRefreshToken(response.body().getRefreshToken());
-                        System.out.println(TokenUtil.getAccessToken("atc"));
+                        System.out.println(TokenUtil.getAccessToken("Authorization"));
                         System.out.println(TokenUtil.getRefreshToken("rtc"));
                         Intent intent = new Intent(MainActivity.this,MarketlistActivity.class);
                         intent.putExtra("user", user);
