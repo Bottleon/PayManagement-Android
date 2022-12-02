@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -41,21 +42,23 @@ public class MarketlistActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private UserApi userApi;
     private User user;
+    private User sendUser;
     private List<Store> stores;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private StoreAdapter storeAdapter;
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketlist);
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-
+        handler = new Handler();
         initailizationComponent();
         initailizationEvent();
     }
-    private void initailizationComponent(){
+    private synchronized void initailizationComponent(){
         back_button = findViewById(R.id.back_button);
         retrofit = RetrofitClient.getInstance();
         userApi = retrofit.create(UserApi.class);
@@ -63,10 +66,35 @@ public class MarketlistActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         stores = new ArrayList<>();
-        storeAdapter = new StoreAdapter((ArrayList<Store>) stores);
-        recyclerView.setAdapter(storeAdapter);
+        userApi.getUser(TokenUtil.getAccessToken("atk"),user.getId()).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()){
+                    sendUser = response.body();
+                    storeAdapter = new StoreAdapter((ArrayList<Store>) stores,sendUser,MarketlistActivity.this);
+                    recyclerView.setAdapter(storeAdapter);
+                }else{
+                    if (response.errorBody() != null) {
+                        try {
+                            Gson gson = new Gson();
+                            APIError error = gson.fromJson(response.errorBody().string(),APIError.class);
+                            showMessage(error.message());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(MarketlistActivity.this,"Failed get User",Toast.LENGTH_SHORT).show();
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE,t.getMessage());
+            }
+        });
+
     }
-    private void initailizationEvent(){
+    private synchronized void initailizationEvent(){
         userApi.getStoresByUser(TokenUtil.getAccessToken("Authorization"),user.getId()).enqueue(new Callback<List<Store>>() {
             @Override
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
