@@ -97,15 +97,12 @@ public class MainActivity extends AppCompatActivity {
             User user = new User();
             user.setId(id);
             user.setPassword(pw);
-
             userApi.login(user).enqueue(new Callback<TokenInfo>() {
                 @Override
                 public void onResponse(Call<TokenInfo> call, Response<TokenInfo> response) {
                     if(response.isSuccessful()){
                         TokenUtil.setAccessToken(response.body().getAccessToken());
                         TokenUtil.setRefreshToken(response.body().getRefreshToken());
-                        System.out.println(TokenUtil.getAccessToken("Authorization"));
-                        System.out.println(TokenUtil.getRefreshToken("rtc"));
                         Intent intent = new Intent(MainActivity.this,MarketlistActivity.class);
                         intent.putExtra("user", user);
                         startActivity(intent);
