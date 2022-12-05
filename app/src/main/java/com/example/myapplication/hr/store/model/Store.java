@@ -1,20 +1,41 @@
 package com.example.myapplication.hr.store.model;
 
 import com.example.myapplication.hr.userstore.model.UserStore;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import org.intellij.lang.annotations.Pattern;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Store {
+public class Store implements Serializable {
+
+    @SerializedName("id")
+    @Expose
     private String id;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("phoneNumber")
+    @Expose
     private String phoneNumber;
+    @SerializedName("basicAddress")
+    @Expose
     private String basicAddress;
+    @SerializedName("detailAddress")
+    @Expose
     private String detailAddress;
+    @SerializedName("size")
+    @Expose
     private String size;
+    @SerializedName("lateAllowTime")
+    @Expose
     private String lateAllowTime;
+    @SerializedName("breakTime")
+    @Expose
     private String breakTime;
 
     private List<UserStore> users = new ArrayList<>();
