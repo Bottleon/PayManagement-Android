@@ -16,11 +16,26 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.MarketlistActivity;
 import com.example.myapplication.QRcheckActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.common.exception.APIError;
+import com.example.myapplication.common.message.AlertMessage;
+import com.example.myapplication.common.retrofit.RetrofitClient;
+import com.example.myapplication.common.token.TokenUtil;
 import com.example.myapplication.hr.store.model.Store;
 import com.example.myapplication.hr.user.model.User;
+import com.example.myapplication.hr.userstore.api.UserStoreApi;
+import com.example.myapplication.hr.userstore.model.UserStore;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.CustomViewHoler> {
     private List<Store> arrayList;
@@ -47,15 +62,37 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.CustomViewHo
         holder.storeButton.setOnClickListener(view->{
             Store store = arrayList.get(holder.getAdapterPosition());
             Intent intent;
-            System.out.println(user.getId());
-            System.out.println(user.getAuthType());
-            System.out.println(user.getName());
             if(user.getAuthType().equals("근로자")){
                 intent = new Intent(context,QRcheckActivity.class);
             }else{
                 intent = new Intent(context, CategoryActivity.class);
             }
-            context.startActivity(intent);
+            UserStoreApi userStoreApi = RetrofitClient.getInstance().create(UserStoreApi.class);
+            userStoreApi.getUserStore(TokenUtil.getAccessToken("act"),user.getId(), store.getId()).enqueue(new Callback<UserStore>() {
+                @Override
+                public void onResponse(Call<UserStore> call, Response<UserStore> response) {
+                    if(response.isSuccessful()){
+                        intent.putExtra("userStore", response.body());
+                        context.startActivity(intent);
+                    }else{
+                        if (response.errorBody() != null) {
+                            try {
+                                Gson gson = new Gson();
+                                APIError error = gson.fromJson(response.errorBody().string(),APIError.class);
+                                AlertMessage.showMessage(context,error.message());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserStore> call, Throwable t) {
+                    Toast.makeText(context,"server Error",Toast.LENGTH_SHORT).show();
+                    Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE,t.getMessage());
+                }
+            });
         });
     }
 
