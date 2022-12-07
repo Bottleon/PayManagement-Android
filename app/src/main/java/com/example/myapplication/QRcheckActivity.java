@@ -45,6 +45,7 @@ public class QRcheckActivity extends AppCompatActivity {
     private AttendanceApi attendanceApi;
     private UserStoreAttendance userStoreAttendance;
     private ImageButton backButton;
+    private AppCompatButton goToStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +53,6 @@ public class QRcheckActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userStore = (UserStore) intent.getSerializableExtra("userStore");
-        System.out.println(userStore.getStore().getName()+"@@@@@@@@@@@@@@@");
-        System.out.println(userStore.getUser().getId()+"@@@@@@@@@@@@@");
         initializationComponent();
         initializationEvents();
     }
@@ -64,12 +63,21 @@ public class QRcheckActivity extends AppCompatActivity {
         attendanceApi = retrofit.create(AttendanceApi.class);
         backButton = findViewById(R.id.back_button);
         userStoreAttendance = new UserStoreAttendance();
+        goToStore = findViewById(R.id.go_to_store);
     }
 
     private void initializationEvents(){
         onClickStartButton();
         onClickFinishButton();
         onClickBackButton();
+        onClickGoToStorebutton();
+    }
+    private void onClickGoToStorebutton(){
+        goToStore.setOnClickListener(view -> {
+            Intent intent = new Intent(QRcheckActivity.this,CategoryActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
     }
 
     private void onClickStartButton(){

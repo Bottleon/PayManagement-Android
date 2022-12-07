@@ -60,6 +60,20 @@
             android:layout_gravity="center">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/go_to_store"
+                android:layout_height="110dp"
+                android:background="@drawable/shadow"
+                android:layout_width="350dp"
+                android:layout_gravity="center_horizontal"
+                android:text="가게 입장"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/leferibaseregular"
+                android:layout_marginTop="30dp"
+                android:drawableLeft="@drawable/store_icon"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/start_work_button"
                 android:layout_height="110dp"
                 android:background="@drawable/shadow"

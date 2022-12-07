@@ -21,6 +21,8 @@ import com.example.myapplication.common.token.TokenUtil;
 import com.example.myapplication.hr.store.model.Store;
 import com.example.myapplication.hr.user.api.UserApi;
 import com.example.myapplication.hr.user.model.User;
+import com.example.myapplication.hr.userstore.api.UserStoreApi;
+import com.example.myapplication.hr.userstore.model.UserStore;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -48,6 +50,8 @@ public class MarketlistActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private StoreAdapter storeAdapter;
     private Handler handler;
+    private UserStoreApi userStoreApi;
+    private List<UserStore> storesRelatedUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,7 @@ public class MarketlistActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         stores = new ArrayList<>();
+        userStoreApi = RetrofitClient.getInstance().create(UserStoreApi.class);
         userApi.getUser(TokenUtil.getAccessToken("atk"),user.getId()).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -95,15 +100,14 @@ public class MarketlistActivity extends AppCompatActivity {
 
     }
     private synchronized void initailizationEvent(){
-        userApi.getStoresByUser(TokenUtil.getAccessToken("Authorization"),user.getId()).enqueue(new Callback<List<Store>>() {
+        userStoreApi.getStoresByUserId(TokenUtil.getAccessToken("act"),user.getId()).enqueue(new Callback<List<UserStore>>() {
             @Override
-            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
+            public void onResponse(Call<List<UserStore>> call, Response<List<UserStore>> response) {
                 if(response.isSuccessful()){
-                    for(Store s : response.body()){
-                        stores.add(s);
+                    for(UserStore us : response.body()){
+                        stores.add(us.getStore());
                         storeAdapter.notifyDataSetChanged();
                     }
-
                 }else{
                     if (response.errorBody() != null) {
                         try {
@@ -118,25 +122,14 @@ public class MarketlistActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Store>> call, Throwable t) {
+            public void onFailure(Call<List<UserStore>> call, Throwable t) {
                 Toast.makeText(MarketlistActivity.this,"Failed get Store",Toast.LENGTH_SHORT).show();
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE,t.getMessage());
             }
         });
-        /*market1_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MarketlistActivity.this, CategoryActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MarketlistActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        back_button.setOnClickListener(view -> {
+            Intent intent = new Intent(MarketlistActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
     private void showMessage(String msg){
