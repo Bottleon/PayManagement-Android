@@ -51,6 +51,7 @@ public class MarketlistActivity extends AppCompatActivity {
     private StoreAdapter storeAdapter;
     private Handler handler;
     private UserStoreApi userStoreApi;
+    private ImageButton mypage_imagebutton;
     private List<UserStore> storesRelatedUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +61,12 @@ public class MarketlistActivity extends AppCompatActivity {
         user = (User) intent.getSerializableExtra("user");
         handler = new Handler();
         initailizationComponent();
-        initailizationEvent();
     }
-    private synchronized void initailizationComponent(){
+    private void initailizationComponent(){
         back_button = findViewById(R.id.back_button);
         retrofit = RetrofitClient.getInstance();
         userApi = retrofit.create(UserApi.class);
+        mypage_imagebutton = findViewById(R.id.mypage_imagebutton);
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -78,6 +79,7 @@ public class MarketlistActivity extends AppCompatActivity {
                     sendUser = response.body();
                     storeAdapter = new StoreAdapter((ArrayList<Store>) stores,sendUser,MarketlistActivity.this);
                     recyclerView.setAdapter(storeAdapter);
+                    initailizationEvent();
                 }else{
                     if (response.errorBody() != null) {
                         try {
@@ -99,7 +101,7 @@ public class MarketlistActivity extends AppCompatActivity {
         });
 
     }
-    private synchronized void initailizationEvent(){
+    private void initailizationEvent(){
         userStoreApi.getStoresByUserId(TokenUtil.getAccessToken("act"),user.getId()).enqueue(new Callback<List<UserStore>>() {
             @Override
             public void onResponse(Call<List<UserStore>> call, Response<List<UserStore>> response) {
@@ -131,6 +133,7 @@ public class MarketlistActivity extends AppCompatActivity {
             Intent intent = new Intent(MarketlistActivity.this, MainActivity.class);
             startActivity(intent);
         });
+        onClickMyPageButton();
     }
     private void showMessage(String msg){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
@@ -146,5 +149,12 @@ public class MarketlistActivity extends AppCompatActivity {
             } //확인 눌렀을때, 토스트 알림메세지 뜸.
         });
         dialog.show();
+    }
+
+    private void onClickMyPageButton(){
+        mypage_imagebutton.setOnClickListener(view->{
+            Intent intent = new Intent(MarketlistActivity.this, MyinfoActivity.class);
+            startActivity(intent);
+        });
     }
 }

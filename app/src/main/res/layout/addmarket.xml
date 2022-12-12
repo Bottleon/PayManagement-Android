@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가게 코드"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/leferibasebold"/>
+
+    <EditText
+        android:id="@+id/market_code"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/input_box"
+        android:textColor="@color/black"
+        android:layout_margin="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_height="30dp"
+        android:background="@drawable/login_box"
+        android:layout_width="100dp"
+        android:text="확 인"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/leferipointwhite"
+        android:layout_gravity="center_horizontal"/>
+
+
+
+</LinearLayout>

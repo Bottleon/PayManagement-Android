@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.myapplication.common.retrofit.RetrofitClient;
 import com.example.myapplication.common.token.TokenUtil;
@@ -31,6 +32,10 @@ public class CategoryActivity extends AppCompatActivity {
     private UserStore userStore;
     private UserStore relatedStoreInformation;
     private UserStoreApi userStoreApi;
+    private Button market_info_button;
+    private ImageButton mypage_imagebutton;
+    private TextView market_phone_number_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +50,14 @@ public class CategoryActivity extends AppCompatActivity {
         back_button = findViewById(R.id.back_button);
         qrcheck_button = findViewById(R.id.qrcheck_button);
         chatting_button = findViewById(R.id.chatting_button);
+        notice_button = findViewById(R.id.notice_button);
+        stafflist_button = findViewById(R.id.stafflist_button);
+        market_info_button = findViewById(R.id.market_info_button);
+        mypage_imagebutton = findViewById(R.id.mypage_imagebutton);
+        calendar_button = findViewById(R.id.calendar_button);
+        market_phone_number_text = findViewById(R.id.market_phone_number);
         userStoreApi = RetrofitClient.getInstance().create(UserStoreApi.class);
+        market_phone_number_text.setText(userStore.getStore().getName());
     }
 
     private void initializationEvent(){
@@ -53,6 +65,11 @@ public class CategoryActivity extends AppCompatActivity {
         onClickChattingButton();
         onClickQRCheckButton();
         onClickBackButton();
+        onClickCalanderButton();
+        onClickMarketInfoButton();
+        onClickNoticeButton();
+        onClickMyPageButton();
+        onClickStaffListButton();
     }
     private void getRelatedStoreInformation(){
         userStoreApi.getRelatedUserStore(TokenUtil.getAccessToken("act"),userStore.getStore().getId()).enqueue(new Callback<UserStore>() {
@@ -84,6 +101,41 @@ public class CategoryActivity extends AppCompatActivity {
     private void onClickChattingButton(){
         chatting_button.setOnClickListener(view -> {
             Intent intent = new Intent(CategoryActivity.this, ChattingActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
+    }
+    private void onClickNoticeButton(){
+        notice_button.setOnClickListener(view->{
+            Intent intent = new Intent(CategoryActivity.this, NoticeActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
+    }
+    private void onClickStaffListButton(){
+        stafflist_button.setOnClickListener(view->{
+            Intent intent = new Intent(CategoryActivity.this, StafflistActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
+    }
+    private void onClickMarketInfoButton(){
+        market_info_button.setOnClickListener(view -> {
+            Intent intent = new Intent(CategoryActivity.this, MarketInfoActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
+    }
+    private void onClickMyPageButton(){
+        mypage_imagebutton.setOnClickListener(view->{
+            Intent intent = new Intent(CategoryActivity.this, MyinfoActivity.class);
+            intent.putExtra("userStore",userStore);
+            startActivity(intent);
+        });
+    }
+    private void onClickCalanderButton(){
+        calendar_button.setOnClickListener(view->{
+            Intent intent = new Intent(CategoryActivity.this, CalendarActivity.class);
             intent.putExtra("userStore",userStore);
             startActivity(intent);
         });

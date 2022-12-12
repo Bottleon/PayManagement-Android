@@ -10,34 +10,23 @@ import android.widget.ImageButton;
 import com.example.myapplication.hr.userstore.model.UserStore;
 
 
-public class ChattingActivity extends AppCompatActivity {
+public class MyinfoActivity extends AppCompatActivity {
 
     private ImageButton back_button;
-    private ImageButton mypage_imagebutton;
     private UserStore userStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatting);
+        setContentView(R.layout.activity_myinfo);
 
         Intent intent = getIntent();
         userStore = (UserStore) intent.getSerializableExtra("userStore");
         back_button = findViewById(R.id.back_button);
-        mypage_imagebutton = findViewById(R.id.mypage_imagebutton);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, CategoryActivity.class);
-                intent.putExtra("userStore",userStore);
-                startActivity(intent);
-            }
-        });
-
-        mypage_imagebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, MyinfoActivity.class);
+                Intent intent = new Intent(MyinfoActivity.this, CategoryActivity.class);
                 intent.putExtra("userStore",userStore);
                 startActivity(intent);
             }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".NoticeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/whitebox"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/back_icon"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"/>
+
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/leferibasebold"
+                android:text="공지사항"
+                android:textColor="#000000"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="3dp"
+            android:layout_marginTop="20dp"
+            android:background="#EE8282" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/notice_post"
+        android:layout_height="100dp"
+        android:layout_width="350dp"
+        android:background="@drawable/shadow"
+        android:text="공지사항1"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/leferibasebold"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+        <ListView
+            android:id="@+id/notice_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+
+        </ListView>
+
+    <Button
+        android:id="@+id/write_button"
+        android:layout_height="30dp"
+        android:background="@drawable/login_box"
+        android:layout_width="100dp"
+        android:text="글 쓰 기"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/leferipointwhite"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+        <ImageButton
+            android:id="@+id/bell_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bell_icon"
+            android:contentDescription="bell" />
+
+        <ImageButton
+            android:id="@+id/home_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_icon"
+            android:contentDescription="home" />
+
+        <ImageButton
+            android:id="@+id/mypage_imagebutton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_icon"
+            android:contentDescription="menu" />
+
+    </LinearLayout>
+
+</LinearLayout>

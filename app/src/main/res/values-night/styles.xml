@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomCalendarMonth">
+        <item name="android:textColorPrimary">@color/hotpink</item>
+    </style>
+
+    <style name="CustomCalendarDay">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+
+</resources>

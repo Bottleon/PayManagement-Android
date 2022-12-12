@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -46,6 +47,8 @@ public class QRcheckActivity extends AppCompatActivity {
     private UserStoreAttendance userStoreAttendance;
     private ImageButton backButton;
     private AppCompatButton goToStore;
+    private Button createQr;
+    private ImageButton mypage_imagebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,8 @@ public class QRcheckActivity extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         userStoreAttendance = new UserStoreAttendance();
         goToStore = findViewById(R.id.go_to_store);
+        createQr = findViewById(R.id.create_qr_button);
+        mypage_imagebutton = findViewById(R.id.mypage_imagebutton);
     }
 
     private void initializationEvents(){
@@ -71,6 +76,8 @@ public class QRcheckActivity extends AppCompatActivity {
         onClickFinishButton();
         onClickBackButton();
         onClickGoToStorebutton();
+        onClickCreateQR();
+        onClickMyPage();
     }
     private void onClickGoToStorebutton(){
         goToStore.setOnClickListener(view -> {
@@ -149,13 +156,22 @@ public class QRcheckActivity extends AppCompatActivity {
         });
     }
     private void onClickBackButton(){
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(QRcheckActivity.this, MarketlistActivity.class);
-                intent.putExtra("user",userStore.getUser());
-                startActivity(intent);
-            }
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(QRcheckActivity.this, MarketlistActivity.class);
+            intent.putExtra("user",userStore.getUser());
+            startActivity(intent);
+        });
+    }
+    private void onClickCreateQR(){
+        createQr.setOnClickListener(view->{
+            Intent intent = new Intent(QRcheckActivity.this, CreateQRActivity.class);
+            startActivity(intent);
+        });
+    }
+    private void onClickMyPage(){
+        mypage_imagebutton.setOnClickListener(view->{
+            Intent intent = new Intent(QRcheckActivity.this, MyinfoActivity.class);
+            startActivity(intent);
         });
     }
     private void showMessage(Context context, String msg){
@@ -174,4 +190,3 @@ public class QRcheckActivity extends AppCompatActivity {
         dialog.show();
     }
 }
-

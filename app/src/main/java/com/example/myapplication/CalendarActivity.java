@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.example.myapplication.hr.userstore.model.UserStore;
 
 
-public class ChattingActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
 
     private ImageButton back_button;
     private ImageButton mypage_imagebutton;
@@ -18,7 +18,7 @@ public class ChattingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatting);
+        setContentView(R.layout.activity_calendar);
 
         Intent intent = getIntent();
         userStore = (UserStore) intent.getSerializableExtra("userStore");
@@ -28,7 +28,7 @@ public class ChattingActivity extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(CalendarActivity.this, CategoryActivity.class);
                 intent.putExtra("userStore",userStore);
                 startActivity(intent);
             }
@@ -37,7 +37,7 @@ public class ChattingActivity extends AppCompatActivity {
         mypage_imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, MyinfoActivity.class);
+                Intent intent = new Intent(CalendarActivity.this, MyinfoActivity.class);
                 intent.putExtra("userStore",userStore);
                 startActivity(intent);
             }

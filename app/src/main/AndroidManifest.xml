@@ -75,6 +75,107 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".MyinfoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".NoticeActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".NoticePostActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".NoticeWriteActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".StafflistActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".CalendarActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".MarketInfoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".MarketlistOwnerActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".AddMarketOwnerActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".CreateQRActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".ScanQRActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation"/>
     </application>
 
 </manifest>

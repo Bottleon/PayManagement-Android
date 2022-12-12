@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.example.myapplication.hr.userstore.model.UserStore;
 
 
-public class ChattingActivity extends AppCompatActivity {
+public class NoticePostActivity extends AppCompatActivity {
 
     private ImageButton back_button;
     private ImageButton mypage_imagebutton;
@@ -18,17 +18,18 @@ public class ChattingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatting);
+        setContentView(R.layout.activity_notice_post);
 
         Intent intent = getIntent();
         userStore = (UserStore) intent.getSerializableExtra("userStore");
+
         back_button = findViewById(R.id.back_button);
         mypage_imagebutton = findViewById(R.id.mypage_imagebutton);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(NoticePostActivity.this, NoticeActivity.class);
                 intent.putExtra("userStore",userStore);
                 startActivity(intent);
             }
@@ -37,7 +38,7 @@ public class ChattingActivity extends AppCompatActivity {
         mypage_imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChattingActivity.this, MyinfoActivity.class);
+                Intent intent = new Intent(NoticePostActivity.this, MyinfoActivity.class);
                 intent.putExtra("userStore",userStore);
                 startActivity(intent);
             }
@@ -45,3 +46,4 @@ public class ChattingActivity extends AppCompatActivity {
 
     }
 }
+
